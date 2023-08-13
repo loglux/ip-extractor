@@ -19,7 +19,8 @@ function ExtractHosts {
     echo "Saving a list of nodes into the hosts file..."
 
     while read LINE; do
-        echo $LINE | grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' >> hosts
+        echo $LINE | grep -E -o '\b(?!127\.)[0-9]{1,3}(\.[0-9]{1,3}){3}\b' >> hosts
+        # echo $LINE | grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' >> hosts
         printf "▓"
     done < load
 
